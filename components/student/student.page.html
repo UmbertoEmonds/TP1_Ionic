@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Étudiants</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen *ngIf="student">
+  <ion-card>
+
+    <img src="./assets/lama.png" />
+
+      <ion-card-header>
+
+        <ion-card-title>{{student.name}}</ion-card-title>
+        <ion-card-subtitle>Note: {{student.grade}}/20</ion-card-subtitle>
+
+      </ion-card-header>
+
+      <ion-card-content>
+
+        <ion-label>{{student.comment}}</ion-label>
+
+        <ion-chip [color]="student.isProjectDone ? 'success' : 'danger'">
+          <ion-label>
+            <span *ngIf="student.isProjectDone">Projet terminé</span>
+            <span *ngIf="!student.isProjectDone">Projet non terminé</span>
+          </ion-label>
+        </ion-chip>
+
+      </ion-card-content>
+
+    </ion-card>
+</ion-content>

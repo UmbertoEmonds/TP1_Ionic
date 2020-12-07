@@ -1,0 +1,52 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Étudiants
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div id="container">
+
+    <div class="ion-margin-bottom">
+
+      <span *ngIf="numFastStudents > 1" >
+        <strong>{{numFastStudents}} </strong>
+        étudiants ont terminé leur projet
+      </span>
+
+      <span *ngIf="numFastStudents == 1" >
+        <strong>{{numFastStudents}} </strong>
+        étudiant a terminé son projet
+      </span>
+
+      <span *ngIf="numFastStudents == 0" >
+        Aucun étudiant a terminé son projet
+      </span>
+
+    </div>
+
+    <!--<ion-chip (click)="testPopover()">Cliquez moi</ion-chip>-->
+
+    <ion-list>
+
+      <ion-item routerLink="/student/{{student.id}}" *ngFor="let student of students; let i = index">
+          <ion-avatar class="ion-margin-end">
+            <ion-img [src]="avatarImage" [alt]="student.name"></ion-img>
+          </ion-avatar>
+          <ion-label>{{student.name}}</ion-label>
+          <ion-badge [color]="student.grade < 10 ? 'danger' : 'success'">{{student.grade}}</ion-badge>
+          <ion-button slot="end" (click)="onClick(student)" >Appréciation 
+            <ion-icon class="ion-margin-start" name="pencil-outline"></ion-icon> 
+          </ion-button>
+          <ion-checkbox (ionChange)="onChange($event, i)" color="success" class="ion-margin-start" [checked]="student.isProjectDone" ></ion-checkbox>
+          <!--<ion-icon name="logo-buffer"></ion-icon>-->
+      </ion-item>
+
+    </ion-list>
+
+    <div class="ion-margin-top">{{message}}</div>
+
+  </div>
+</ion-content>
